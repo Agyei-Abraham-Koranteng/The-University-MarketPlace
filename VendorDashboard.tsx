@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import { Vendor, Product, Profile } from './types.ts';
-import { WalletView } from './WalletView.tsx';
+import { Vendor, Product, Profile } from './types';
+import { WalletView } from './WalletView';
 
 interface VendorDashboardProps {
   vendor: Vendor;

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.tsx';
+import App from './App';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
@@ -14,10 +14,3 @@ root.render(
     <App />
   </React.StrictMode>
 );
-
-// Signal that the application has successfully mounted
-const loader = document.getElementById('loading-overlay');
-if (loader) {
-  loader.style.opacity = '0';
-  setTimeout(() => loader.remove(), 500);
-}
