@@ -1,0 +1,11 @@
+{
+  "name": " University Marketplace",
+  "short_name": "UniMall",
+  "description": "The ultimate university marketplace for students, by students. Buy, sell, and trade textbooks, dorm gear, and services.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "theme_color": "#1e293b",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}
