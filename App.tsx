@@ -4,18 +4,18 @@ import { GoogleGenAI } from '@google/genai';
 import { 
   View, UserRole, Product, Vendor, Profile, 
   CartItem, Message, AuditEntry, VendorApplication, Review, Transaction, AppNotification
-} from './types';
+} from './types.ts';
 import { 
   MOCK_PRODUCTS, MOCK_VENDORS, CAMPUSES, MOCK_DISPUTES, MOCK_REVIEWS 
-} from './constants';
+} from './constants.tsx';
 
-import { HomeView } from './Home';
-import { AuthView } from './Auth';
-import { AdminPanel } from './Admin';
-import { MarketplaceView } from './Marketplace';
-import { ProductDetailView } from './ProductDetail';
-import { VendorOnboardingView } from './VendorOnboarding';
-import { VendorDashboard } from './VendorDashboard';
+import { HomeView } from './Home.tsx';
+import { AuthView } from './Auth.tsx';
+import { AdminPanel } from './Admin.tsx';
+import { MarketplaceView } from './Marketplace.tsx';
+import { ProductDetailView } from './ProductDetail.tsx';
+import { VendorOnboardingView } from './VendorOnboarding.tsx';
+import { VendorDashboard } from './VendorDashboard.tsx';
 
 const App: React.FC = () => {
   // --- Global State ---
@@ -123,7 +123,8 @@ const App: React.FC = () => {
     setAiMessages(prev => [...prev, userMsg]);
     setAiLoading(true);
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+      const apiKey = process.env?.API_KEY || '';
+      const ai = new GoogleGenAI({ apiKey });
       const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
         contents: [...aiMessages, userMsg].map(m => ({ role: m.role === 'user' ? 'user' : 'model', parts: [{ text: m.content }] })),

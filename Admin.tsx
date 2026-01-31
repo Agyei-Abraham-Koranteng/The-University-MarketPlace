@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import { UserRole, Product, Vendor, Profile, AuditEntry, VendorApplication } from './types';
-import { CATEGORIES, CAMPUSES } from './constants';
+import { UserRole, Product, Vendor, Profile, AuditEntry, VendorApplication } from './types.ts';
+import { CATEGORIES, CAMPUSES } from './constants.tsx';
 
 interface AdminProps {
   currentUser: Profile;
