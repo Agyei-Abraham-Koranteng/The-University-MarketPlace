@@ -1,7 +1,7 @@
 
-import React from 'react';
-import { View, UserRole, Profile, Campus } from './types';
-import { CAMPUSES } from './constants';
+import React, { useState } from 'react';
+import { View, UserRole, Profile, Campus } from './types.ts';
+import { CAMPUSES } from './constants.tsx';
 
 interface AuthProps {
   authMode: 'LOGIN' | 'SIGNUP';
@@ -15,13 +15,17 @@ interface AuthProps {
 export const AuthView: React.FC<AuthProps> = ({ 
   authMode, setAuthMode, activeCampus, setActiveCampus, onAuthSuccess, onClose 
 }) => {
+  const [email, setEmail] = useState('');
+  const [fullName, setFullName] = useState('');
+  const [password, setPassword] = useState('');
+
   const handleAuthSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const mockUser: Profile = {
       id: `user-${Date.now()}`,
-      email: 'student@campus.edu',
-      role: UserRole.CUSTOMER,
-      fullName: authMode === 'SIGNUP' ? 'New Student' : 'Alex Mercer',
+      email: email, // Use actual entered email
+      role: UserRole.CUSTOMER, // Default role for new signups
+      fullName: authMode === 'SIGNUP' ? fullName : (email === 'admin@unimall.edu.gh' ? 'Platform Admin' : 'Campus Peer'),
       university: CAMPUSES.find(c => c.id === activeCampus)?.name || 'Campus Unknown',
       campusId: activeCampus,
       status: 'Active'
@@ -32,8 +36,6 @@ export const AuthView: React.FC<AuthProps> = ({
   return (
     <div className="min-h-[calc(100vh-80px)] flex items-center justify-center p-6 relative overflow-hidden bg-zinc-50">
       <div className="absolute top-0 left-0 w-full h-full gradient-modern opacity-5 pointer-events-none"></div>
-      <div className="absolute -top-24 -right-24 w-96 h-96 bg-indigo-600/10 blur-[120px] rounded-full"></div>
-      <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-amber-400/10 blur-[120px] rounded-full"></div>
       
       <div className="w-full max-w-md bg-white rounded-[48px] shadow-4xl p-10 md:p-12 border border-zinc-100 animate-in fade-in zoom-in-95 duration-700 relative z-10">
          <div className="text-center mb-10">
@@ -50,18 +52,40 @@ export const AuthView: React.FC<AuthProps> = ({
             {authMode === 'SIGNUP' && (
               <div className="animate-in slide-in-from-top-4 duration-500">
                 <label className="text-[10px] font-black text-zinc-400 uppercase tracking-widest mb-2 block">Full Name</label>
-                <input required type="text" placeholder="e.g. Alex Mercer" className="w-full bg-zinc-50 border border-zinc-100 rounded-2xl px-6 py-4 text-sm font-bold focus:ring-2 focus:ring-indigo-600 outline-none" />
+                <input 
+                  required 
+                  type="text" 
+                  value={fullName}
+                  onChange={e => setFullName(e.target.value)}
+                  placeholder="e.g. Alex Mercer" 
+                  className="w-full bg-zinc-50 border border-zinc-100 rounded-2xl px-6 py-4 text-sm font-bold focus:ring-2 focus:ring-indigo-600 outline-none" 
+                />
               </div>
             )}
             
             <div>
                <label className="text-[10px] font-black text-zinc-400 uppercase tracking-widest mb-2 block">Campus Email</label>
-               <input required type="email" placeholder="student@edu.gh" className="w-full bg-zinc-50 border border-zinc-100 rounded-2xl px-6 py-4 text-sm font-bold focus:ring-2 focus:ring-indigo-600 outline-none" />
+               <input 
+                 required 
+                 type="email" 
+                 value={email}
+                 onChange={e => setEmail(e.target.value)}
+                 placeholder="student@edu.gh" 
+                 className="w-full bg-zinc-50 border border-zinc-100 rounded-2xl px-6 py-4 text-sm font-bold focus:ring-2 focus:ring-indigo-600 outline-none" 
+               />
+               <p className="mt-2 text-[9px] text-zinc-400 italic">Use <span className="font-bold">admin@unimall.edu.gh</span> for full access.</p>
             </div>
 
             <div>
                <label className="text-[10px] font-black text-zinc-400 uppercase tracking-widest mb-2 block">Node Password</label>
-               <input required type="password" placeholder="••••••••" className="w-full bg-zinc-50 border border-zinc-100 rounded-2xl px-6 py-4 text-sm font-bold focus:ring-2 focus:ring-indigo-600 outline-none" />
+               <input 
+                 required 
+                 type="password" 
+                 value={password}
+                 onChange={e => setPassword(e.target.value)}
+                 placeholder="••••••••" 
+                 className="w-full bg-zinc-50 border border-zinc-100 rounded-2xl px-6 py-4 text-sm font-bold focus:ring-2 focus:ring-indigo-600 outline-none" 
+               />
             </div>
 
             {authMode === 'SIGNUP' && (

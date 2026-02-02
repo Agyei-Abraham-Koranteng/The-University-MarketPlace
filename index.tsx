@@ -1,9 +1,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
-
-import { BrowserRouter } from 'react-router-dom';
+import App from './App.tsx';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
@@ -13,8 +11,13 @@ if (!rootElement) {
 const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <App />
   </React.StrictMode>
 );
+
+// Close loading overlay on successful render
+const loader = document.getElementById('loading-overlay');
+if (loader) {
+    loader.style.opacity = '0';
+    setTimeout(() => loader.remove(), 500);
+}
