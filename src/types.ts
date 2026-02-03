@@ -22,7 +22,7 @@ export enum View {
   VENDOR_ONBOARDING = 'VENDOR_ONBOARDING'
 }
 
-export type TrustBadge = 'Verified' | 'Top Seller' | 'Campus Trusted' | 'Fast Responder' | 'Alpha Node';
+export type TrustBadge = 'Verified' | 'Top Seller' | 'Campus Trusted' | 'Fast Responder' | 'Elite Seller';
 
 export interface AppNotification {
   id: string;
@@ -47,7 +47,6 @@ export interface VendorApplication {
   fullName: string;
   email: string;
   storeName: string;
-  university: string;
   appliedAt: string;
   status: 'Pending' | 'Approved' | 'Rejected';
   documentUrl?: string;
@@ -130,7 +129,6 @@ export interface Product {
   stock: number;
   rating: number;
   condition: 'New' | 'Like New' | 'Used';
-  campusId: string;
   isService?: boolean;
   status?: 'Active' | 'Flagged' | 'Sold Out';
 }
@@ -140,12 +138,6 @@ export interface Message {
   content: string;
 }
 
-// Added missing Campus interface for cluster identification
-export interface Campus {
-  id: string;
-  name: string;
-  shortName: string;
-}
 
 // Added missing Dispute interface for transaction resolution
 export interface Dispute {

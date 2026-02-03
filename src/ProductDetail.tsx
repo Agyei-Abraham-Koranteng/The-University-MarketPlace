@@ -12,8 +12,8 @@ interface ProductDetailProps {
   onBack: () => void;
 }
 
-export const ProductDetailView: React.FC<ProductDetailProps> = ({ 
-  product, vendor, reviews, currentUser, onAddToCart, onAddReview, onBack 
+export const ProductDetailView: React.FC<ProductDetailProps> = ({
+  product, vendor, reviews, currentUser, onAddToCart, onAddReview, onBack
 }) => {
   const [rating, setRating] = useState(5);
   const [comment, setComment] = useState('');
@@ -33,7 +33,7 @@ export const ProductDetailView: React.FC<ProductDetailProps> = ({
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-6 py-12 md:py-24 animate-in fade-in slide-in-from-bottom-4 duration-700">
-      <button 
+      <button
         onClick={onBack}
         className="mb-12 text-[10px] font-black uppercase tracking-widest text-zinc-400 hover:text-zinc-950 flex items-center transition-colors"
       >
@@ -41,7 +41,7 @@ export const ProductDetailView: React.FC<ProductDetailProps> = ({
       </button>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 mb-24">
-        <div className="relative aspect-square overflow-hidden rounded-[48px] bg-zinc-50 shadow-2xl">
+        <div className="relative aspect-square overflow-hidden rounded-[32px] bg-zinc-50 shadow-xl">
           <img src={product.imageUrl} className="w-full h-full object-cover" alt={product.name} />
           <div className="absolute top-8 left-8">
             <span className="px-4 py-1.5 bg-white/90 backdrop-blur rounded-full text-[10px] font-black uppercase tracking-widest border border-zinc-100 shadow-sm">
@@ -53,21 +53,21 @@ export const ProductDetailView: React.FC<ProductDetailProps> = ({
         <div className="flex flex-col">
           <div className="mb-10">
             <p className="text-[11px] font-black text-indigo-600 uppercase tracking-[0.3em] mb-4">{product.category}</p>
-            <h1 className="text-4xl md:text-6xl font-black text-zinc-950 tracking-tighter mb-6 leading-none">{product.name}</h1>
-            <p className="text-2xl font-black text-zinc-950 mb-8">${product.price}</p>
-            <p className="text-zinc-500 text-lg leading-relaxed font-medium mb-10">{product.description}</p>
-            
+            <h1 className="text-3xl md:text-5xl font-black text-zinc-950 tracking-tighter mb-6 leading-none">{product.name}</h1>
+            <p className="text-xl font-black text-zinc-950 mb-8">${product.price}</p>
+            <p className="text-zinc-500 text-base leading-relaxed font-medium mb-10">{product.description}</p>
+
             <div className="flex items-center gap-6 p-6 bg-zinc-50 rounded-[32px] border border-zinc-100 mb-10">
-               <img src={vendor?.logoUrl} className="w-14 h-14 rounded-2xl object-cover shadow-sm" alt="" />
-               <div>
-                  <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest mb-1">Sold By</p>
-                  <p className="font-black text-zinc-950">{vendor?.storeName || 'Campus Vendor'}</p>
-               </div>
-               {vendor?.isVerified && <i className="fas fa-check-circle text-indigo-500 ml-auto mr-4"></i>}
+              <img src={vendor?.logoUrl} className="w-14 h-14 rounded-2xl object-cover shadow-sm" alt="" />
+              <div>
+                <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest mb-1">Sold By</p>
+                <p className="font-black text-zinc-950">{vendor?.storeName || 'Campus Vendor'}</p>
+              </div>
+              {vendor?.isVerified && <i className="fas fa-check-circle text-indigo-500 ml-auto mr-4"></i>}
             </div>
 
             <div className="flex gap-4">
-              <button 
+              <button
                 onClick={() => onAddToCart(product)}
                 className="flex-1 bg-zinc-950 text-white py-6 rounded-3xl font-black uppercase tracking-widest text-[11px] shadow-2xl hover:bg-indigo-600 transition-all active:scale-95"
               >
@@ -82,17 +82,17 @@ export const ProductDetailView: React.FC<ProductDetailProps> = ({
       </div>
 
       <div className="max-w-3xl">
-        <h2 className="text-3xl font-black text-zinc-950 tracking-tighter mb-12">Reviews & Ratings</h2>
-        
+        <h2 className="text-2xl font-black text-zinc-950 tracking-tighter mb-10">Reviews & Ratings</h2>
+
         {currentUser && (
-          <div className="bg-white p-10 rounded-[48px] border border-zinc-100 shadow-sm mb-16">
+          <div className="bg-white p-8 rounded-[32px] border border-zinc-100 shadow-sm mb-12">
             <h3 className="text-lg font-black text-zinc-950 mb-8 tracking-tight">Leave a Review</h3>
             <form onSubmit={handleSubmitReview} className="space-y-8">
               <div>
                 <label className="text-[10px] font-black text-zinc-400 uppercase tracking-widest mb-4 block">Rating</label>
                 <div className="flex gap-3">
                   {[1, 2, 3, 4, 5].map(star => (
-                    <button 
+                    <button
                       key={star}
                       type="button"
                       onClick={() => setRating(star)}
@@ -105,7 +105,7 @@ export const ProductDetailView: React.FC<ProductDetailProps> = ({
               </div>
               <div>
                 <label className="text-[10px] font-black text-zinc-400 uppercase tracking-widest mb-4 block">Your Thoughts</label>
-                <textarea 
+                <textarea
                   required
                   rows={4}
                   value={comment}
@@ -141,7 +141,7 @@ export const ProductDetailView: React.FC<ProductDetailProps> = ({
               </div>
             </div>
           )) : (
-            <p className="text-zinc-300 italic font-medium py-10">No reviews yet for this node asset.</p>
+            <p className="text-zinc-300 italic font-medium py-10">No reviews yet for this community item.</p>
           )}
         </div>
       </div>

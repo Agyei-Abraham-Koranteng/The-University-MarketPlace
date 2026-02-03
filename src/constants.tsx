@@ -1,5 +1,5 @@
 
-import { Product, Vendor, UserRole, Campus, Dispute, SafeSpot, Review } from './types';
+import { Product, Vendor, UserRole, Profile, Dispute, SafeSpot, Review } from './types';
 
 export const CATEGORIES = ['Textbooks', 'Electronics', 'Dorm Decor', 'Fashion', 'Services', 'Other'];
 
@@ -7,13 +7,6 @@ export const SAFE_SPOTS: SafeSpot[] = [
   { id: 'ss1', name: 'Main Library Square', description: 'Under the clock tower. Highly visible.', coordinates: { lat: 0, lng: 0 } },
   { id: 'ss2', name: 'Student Union Hub', description: 'Near the campus bookstore entrance.', coordinates: { lat: 0, lng: 0 } },
   { id: 'ss3', name: 'Central Security Post', description: 'Recommended for high-value electronics.', coordinates: { lat: 0, lng: 0 } }
-];
-
-export const CAMPUSES: Campus[] = [
-  { id: 'c1', name: 'University of Ghana (Legon)', shortName: 'Legon' },
-  { id: 'c2', name: 'Kwame Nkrumah University (KNUST)', shortName: 'KNUST' },
-  { id: 'c3', name: 'Ashesi University', shortName: 'Ashesi' },
-  { id: 'c4', name: 'University of Mines & Tech (UMaT)', shortName: 'UMaT' }
 ];
 
 export const MOCK_REVIEWS: Review[] = [
@@ -52,8 +45,6 @@ export const MOCK_VENDORS: Vendor[] = [
     badges: ['Verified', 'Top Seller'],
     rating: 4.9,
     totalSales: 154,
-    university: 'State University',
-    campusId: 'c1',
     wallet: {
       pendingBalance: 450.00,
       availableBalance: 1200.50,
@@ -78,8 +69,6 @@ export const MOCK_VENDORS: Vendor[] = [
     badges: ['Fast Responder'],
     rating: 4.2,
     totalSales: 12,
-    university: 'Tech Institute',
-    campusId: 'c2',
     wallet: {
       pendingBalance: 120.00,
       availableBalance: 0.00,
@@ -100,8 +89,7 @@ export const MOCK_PRODUCTS: Product[] = [
     imageUrl: 'https://images.unsplash.com/photo-1543004471-2401c3e18a9a?w=600&h=600&fit=crop',
     stock: 2,
     rating: 5.0,
-    condition: 'Used',
-    campusId: 'c1'
+    condition: 'Used'
   },
   {
     id: 'p2',
@@ -113,8 +101,7 @@ export const MOCK_PRODUCTS: Product[] = [
     imageUrl: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600&h=600&fit=crop',
     stock: 1,
     rating: 4.5,
-    condition: 'Like New',
-    campusId: 'c2'
+    condition: 'Like New'
   },
   {
     id: 'p3',
@@ -126,8 +113,7 @@ export const MOCK_PRODUCTS: Product[] = [
     imageUrl: 'https://images.unsplash.com/photo-1532187875605-2fe3587b1598?w=600&h=600&fit=crop',
     stock: 5,
     rating: 4.8,
-    condition: 'New',
-    campusId: 'c1'
+    condition: 'New'
   },
   {
     id: 'p4',
@@ -140,7 +126,6 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 1,
     rating: 5.0,
     condition: 'New',
-    campusId: 'c1',
     isService: true
   }
 ];
@@ -156,3 +141,12 @@ export const MOCK_DISPUTES: Dispute[] = [
     createdAt: '2024-05-15'
   }
 ];
+
+export const MOCK_ADMIN: Profile = {
+  id: 'u0',
+  email: 'admin@unimall.edu.gh',
+  role: UserRole.ADMIN,
+  fullName: 'Systems Administrator',
+  avatarUrl: 'https://ui-avatars.com/api/?name=Admin&background=09090b&color=fff',
+  status: 'Active'
+};
